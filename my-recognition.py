@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 import jetson_inference
+from jetson_inference import imageNet
 import jetson_utils
 
 import argparse
@@ -7,11 +8,14 @@ import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument("filename", type=str, help="filename of the image to process")
 parser.add_argument("--network", type=str, default="googlenet", help="model to use, can be:  googlenet, resnet-18, ect. (see --help for others)")
+# parser.add_argument("--model", type=str)
 opt = parser.parse_args()
 
 img = jetson_utils.loadImage(opt.filename)
+net = imageNet(model="resnet18.onnx", labels="labels.txt", 
+                input_blob="input_0", output_blob="output_0")
 
-net = jetson_inference.imageNet(opt.network)
+# net = jetson_inference.imageNet(opt.network, opt.model)
 
 class_idx, confidence = net.Classify(img)
 
