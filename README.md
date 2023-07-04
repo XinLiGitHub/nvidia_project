@@ -1,3 +1,3 @@
 # nvidia_project
 
-![test](https://imgur.com/gallery/vRvd0)
+![test](https://imgur.com/lM5Whx9)
